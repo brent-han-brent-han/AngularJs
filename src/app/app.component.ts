@@ -8,8 +8,5 @@ import { $ } from 'protractor';
 })
 export class AppComponent {
   title = 'Test Auction';
-  test() {
-    $('xxxx').show();
-    $('yyyy').show();
-  }
+
 }
