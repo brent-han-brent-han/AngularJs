@@ -8,5 +8,4 @@ import { $ } from 'protractor';
 })
 export class AppComponent {
   title = 'Test Auction';
-
 }
