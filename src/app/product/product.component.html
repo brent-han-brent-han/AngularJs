@@ -1,10 +1,14 @@
-<div class="col-sm-4 col-md-4 col-lg-4">
+<div *ngFor="let product of prodects" class="col uk-icon-neuter">
   <div class="img-thumbnail">
-    <img src="http://placehold.it/320*150"></img>
+    <img [src]="imgUrl" class="rounded">
     <div class="figure-caption">
-      <div class="rounded-right">
-        
-      </div>
+      <h4 class="text-right">{{product.price}}元</h4>
+      <h4><a>{{product.title}}</a></h4>
+      <p>{{product.desc}}</p>
+      <p>{{product.rating}}</p>
+    </div>
+    <div>
+      <app-stars [rating]="product.rating"></app-stars>
     </div>
   </div>
 </div>
