@@ -1,6 +1,6 @@
-<div *ngFor="let product of prodects" class="col uk-icon-neuter">
+<div *ngFor="let product of prodects" class="col-md-4 col-lg-4 col-sm-4">
   <div class="img-thumbnail">
-    <img [src]="imgUrl" class="rounded">
+    <img [src]="imgUrl" class="rounded img-responsize">
     <div class="figure-caption">
       <h4 class="text-right">{{product.price}}元</h4>
       <h4><a>{{product.title}}</a></h4>
