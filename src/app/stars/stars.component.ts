@@ -9,6 +9,10 @@ export class StarsComponent implements OnInit {
   @Input()
   private rating = 0;
   private stars: boolean[];
+  // tslint:disable-next-line:no-inferrable-types
+  @Input()
+  private readonly = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -20,6 +24,13 @@ export class StarsComponent implements OnInit {
     this.stars = [];
     for (let i = 1; i <= 5; i++) {
       this.stars.push(i > pRating);
+    }
+  }
+
+  clickStar(index: number) {
+    if (!this.readonly) {
+      this.rating = index + 1;
+      this.ngOnInit();
     }
   }
 }

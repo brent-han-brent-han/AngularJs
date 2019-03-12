@@ -1,4 +1,29 @@
-<div>
+<div class="img-thumbnail">
   <img src="http://placehold.it/820x230">
-  <h4>{{productTitle}}</h4>
+  <div>
+    <h4>{{product.title}}</h4>
+    <h4 class="text-right">{{product.price}}</h4>
+    <h4>{{product.rating}}</h4>
+    <p>{{product.desc}}</p>
+  </div>
+  <div>
+    <p class="text-right">{{comments.length}}</p>
+    <app-stars [rating]="product.rating"></app-stars>
+  </div>
+</div>
+<br>
+<div class="card bg-light text-dark">
+  <div>
+    <div><app-stars [rating]="newRating" [readonly]="false" ></app-stars></div>
+    <div><textarea [(ngModel)]="newCom"></textarea></div>
+    <button class="btn btn-primary" type="button" (click)="addComment()">Submit</button>
+  </div>
+  <div *ngFor="let comment of comments" class="row card-body">
+    <div class="col-12">
+        <app-stars [rating]="comment.rating"></app-stars>
+        <span class="text-right">{{comment.user}}</span>
+        <div class="card-text text-right">{{comment.timestamp}}</div>
+        <p>{{comment.comment}}</p>
+    </div>
+  </div>
 </div>

@@ -1,15 +1,27 @@
-<form>
+<form [formGroup]="formModel" (ngSubmit)="onSearch()" novalidate>
   <div class="form-group">
     <label for="productNm">商品名称:</label>
-    <input type="text" class="form-control" id="productNm" placeholder="商品名称"/>
+    <input [class.border-danger]="!formModel.get('title').valid && !formModel.get('title').untouched" formControlName="title" type="text" class="form-control" placeholder="商品名称"/>
+    <div [hidden]="formModel.get('title').valid || formModel.get('title').untouched">
+      <div class="help-block" [hidden]="!formModel.hasError('minlength', 'title')">输入位数小于三位</div>
+      <div class="help-block" [hidden]="!formModel.hasError('required', 'title')">名称必须入力</div>
+    </div>
   </div>
   <div class="form-group">
     <label for="productPrice">商品价格:</label>
-    <input type="number" class="form-control" id="productPrice" placeholder="商品价格"/>
+    <input [class.border-danger]="formModel.hasError('checkPlusNumber', 'price')"  formControlName="price" type="number" class="form-control" placeholder="商品价格"/>
+    <div class="help-block" [hidden]="!formModel.hasError('checkPlusNumber', 'price')">数量不能为负数</div>
   </div>
   <div class="form-group">
     <label for="productCategroy">商品类别:</label>
-    <select type="number" class="form-control" id="productCategroy"></select>
+    <!-- <select required [(ngModel)]="${model.property}" ngControl="controlName">
+      <option *ngFor="#item of collection" [value]="item">{{item}} </option>
+    </select> -->
+    <select type="number" class="form-control" formControlName="catalog">
+      <option value="-1">全部分类</option>
+      <option *ngFor="let catalog of catalogs" [value]="catalog">{{catalog}}</option>
+    </select>
+    
   </div>
   <div class="form-group">
    <button type="submit" class="btn btn-primary btn-block">搜索</button>
